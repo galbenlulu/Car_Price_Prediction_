@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("https://cdn.openart.ai/uploads/image_dteyeFZ5_1721821890523_raw.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 36px;
+            color: #0ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 300;
+            font-size: 14px;
+            color: #0ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        select, input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(0, 255, 255, 0.1);
+            color: #fff;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus, input[type="number"]:focus {
+            background-color: rgba(0, 255, 255, 0.2);
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        select option {
+            background-color: #000;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0ff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        button:hover {
+            background-color: #00cccc;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        }
+        
+        .prediction {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            background-color: rgba(0, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            color: #0ff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+        <form id="predictionForm">
+            <div class="form-group">
+                <label for="manufactor">Manufacturer*</label>
+                <select name="manufactor" id="manufactor" required>
+                    <option value="" disabled selected>Select Manufacturer</option>
+                    <option value="אופל">אופל</option>
+                    <option value="טויוטה">טויוטה</option>
+                    <option value="שברולט">שברולט</option>
+                    <option value="מיצובישי">מיצובישי</option>
+                    <option value="אלפא רומיאו">אלפא רומיאו</option>
+                    <option value="פולקסווגן">פולקסווגן</option>
+                    <option value="סוזוקי">סוזוקי</option>
+                    <option value="יונדאי">יונדאי</option>
+                    <option value="וולוו">וולוו</option>
+                    <option value="פיג'ו">פיג'ו</option>
+                    <option value="רנו">רנו</option>
+                    <option value="קיה">קיה</option>
+                    <option value="מרצדס">מרצדס</option>
+                    <option value="סקודה">סקודה</option>
+                    <option value="הונדה">הונדה</option>
+                    <option value="מיני">מיני</option>
+                    <option value="אאודי">אאודי</option>
+                    <option value="סיטרואן">סיטרואן</option>
+                    <option value="ב.מ.וו">ב.מ.וו</option>
+                    <option value="מאזדה">מאזדה</option>
+                    <option value="ניסאן">ניסאן</option>
+                    <option value="דייהטסו">דייהטסו</option>
+                    <option value="סובארו">סובארו</option>
+                    <option value="קרייזלר">קרייזלר</option>
+                    <option value="פורד">פורד</option>
+                    <option value="לקסוס">לקסוס</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="capacity_Engine">Engine Capacity (cc)</label>
+                <input type="number" id="capacity_Engine" name="capacity_Engine" min="0" max="10000" placeholder="Enter Engine Capacity (0-10000 cc)">
+            </div>
+            <div class="form-group">
+                <label for="Engine_type">Engine Type</label>
+                <select name="Engine_type" id="Engine_type">
+                    <option value="" disabled selected>Select Engine Type</option>
+                    <option value="דיזל">דיזל</option>
+                    <option value="בנזין">בנזין</option>
+                    <option value="גז">גז</option>
+                    <option value="היברידי">היברידי</option>
+                    <option value="חשמלי">חשמלי</option>
+                    <option value="אחר">אחר</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Prev_ownership">Previous Ownership Type</label>
+                <select name="Prev_ownership" id="Prev_ownership">
+                    <option value="" disabled selected>Select Previous Ownership Type</option>
+                    <option value="פרטית">פרטית</option>
+                    <option value="אחר">אחר</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Km">Kilometers</label>
+                <input type="number" id="Km" name="Km" min="0" placeholder="How many Kilometers Driven?">
+            </div>
+            <div class="form-group">
+                <label for="Supply_score">Supply Score</label>
+                <input type="number" id="Supply_score" name="Supply_score" min="0" max="100000" placeholder="Enter Supply Score (0-100000)">
+            </div>
+            <div class="form-group">
+                <label for="Year">Year*</label>
+                <select name="Year" id="Year" required>
+                    <option value="" disabled selected>Select year of manufacture</option>
+                </select>
+            </div>
+            <button type="submit">Predict Price</button>
+        </form>
+        
+        <div id="prediction" class="prediction" style="display: none;">
+            Predicted Price: <span id="predictionValue"></span>
+        </div>
+        
+        <div class="footer">
+            
+        </div>
+    </div>
+
+    <script>
+        // Populate year dropdown
+        var yearSelect = document.getElementById('Year');
+        var currentYear = new Date().getFullYear();
+        for (var i = currentYear; i >= 1900; i--) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            yearSelect.appendChild(option);
+        }
+
+        // Handle form submission
+        document.getElementById('predictionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = new FormData(this);
+            
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('predictionValue').textContent = data;
+                document.getElementById('prediction').style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
